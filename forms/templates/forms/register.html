@@ -1,0 +1,29 @@
+{% extends "forms/index.html" %}
+
+
+
+{% block title %}
+    <title>Register</title>
+{% endblock title %}
+
+
+
+{% block content %}
+    <div class="form-container">
+        <h2>Register form</h2>
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {{ field.errors}}
+                {% endif %}
+                {{field.label_tag}}{{ field }}
+            {% endfor %}
+
+            <div class="form-btns">
+                <button>Submit</button>
+                <a href="{% url 'forms:home' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

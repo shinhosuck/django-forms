@@ -1,0 +1,30 @@
+{% extends "forms/index.html" %}
+
+
+
+{% block title %}
+    <title>Logout</title>
+{% endblock title %}
+
+
+
+{% block content %}
+    {% if not request.user.is_authenticated %}
+    <div class="form-container" style="border: none;">
+        <div class="form-btns" style="justify-content: center;">
+            <p style="letter-spacing: 0.05rem; font-size: 1.1rem;">You are not logged in!</p>
+            <a style="background: none; text-decoration: underline; color: orangered; padding: 0" href="{% url 'forms:login' %}">Login</a>
+        </div>
+    </div>
+    {% else %}
+        <div class="form-container" style="border: none">
+            <form style="flex-direction: row; align-items: center; justify-content: center;" action="/logout" class="form" method="POST">
+                {% csrf_token %}
+                <p style="font-size: 1.1rem; letter-spacing: 0.05rem;">Are you sure you want to logout?</p>
+                <div class="form-btns">
+                    <button style="padding: 0; background: none; color: orangered; text-decoration: underline;">Logout</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock content %}

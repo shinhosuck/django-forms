@@ -1,0 +1,37 @@
+{% extends "forms/index.html" %}
+
+
+
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <div class="form-container" style="border: none;">
+        <div class="form-btns" style="justify-content: center;">
+            <p style="letter-spacing: 0.05rem; font-size: 1.1rem;">You are logged in already!</p>
+            <a style="background: none; text-decoration: underline; color: orangered; padding: 0" href="{% url 'forms:home' %}">Go home</a>
+        </div>
+    </div>
+    {% else %}
+        <div class="form-container">
+            <form action="" class="form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                {% endfor %}
+                <div class="form-btns">
+                    <button>Login</button>
+                    <a href="{% url 'forms:home' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock content %}
