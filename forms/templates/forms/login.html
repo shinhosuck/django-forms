@@ -20,13 +20,7 @@
         <div class="form-container">
             <form action="" class="form" method="POST">
                 {% csrf_token %}
-                {% for field in form %}
-                    {% if field.errors %}
-                        {{ field.errors }}
-                    {% endif %}
-                    {{ field.label_tag }}
-                    {{ field }}
-                {% endfor %}
+                    {{ form }}
                 <div class="form-btns">
                     <button>Login</button>
                     <a href="{% url 'forms:home' %}">Cancel</a>
